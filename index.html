@@ -28,7 +28,7 @@
       --text-muted: #8E7A99;
       --lavender: #9A84A1;
       --lavender-light: #D4A8F0;
-      --lavender-bg: #F8F5FA;
+      --lavender-bg: #E6DFEA;
       
       --font-serif: 'Didot', 'Bodoni MT', 'Cormorant Garamond', serif;
       --font-sans: 'Poppins', sans-serif;
@@ -304,23 +304,27 @@
       font-weight: 300; 
     }
 
-    /* Minimalist text button styling for cover */
-    .cover-btn-text { 
-      background: transparent; 
-      color: rgba(255, 255, 255, 0.9); 
+    /* Subtle Text-Only "Open Our Story" Button */
+    .cover-btn { 
+      background-color: transparent; 
+      color: rgba(255, 255, 255, 0.85); 
       border: none;
-      padding: 0.5rem 1rem;
-      font-size: 10px;
-      letter-spacing: 4px;
+      padding: 0.4rem 0.8rem;
+      font-size: 9px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       transition: all 0.3s var(--ease-smooth);
       font-weight: 300;
+      box-shadow: none;
+      border-bottom: 1px solid transparent;
     }
 
-    .cover-btn-text:hover { 
-      color: var(--lavender-light); 
-      transform: translateY(-2px);
-      letter-spacing: 5px;
+    .cover-btn:hover { 
+      background-color: transparent; 
+      color: #FFF; 
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: none;
+      transform: translateY(-1px);
     }
 
     /* ==========================================================================
@@ -590,30 +594,12 @@
     }
 
     /* ==========================================================================
-       6. THE DAY SCREEN (Strict Uniform Card Sizing Fixed)
+       6. THE DAY SCREEN (Solid Lavender Background)
        ========================================================================== */
     #screen-day {
       position: relative;
-      background-color: var(--off-white);
+      background-color: var(--lavender-bg);
       color: var(--black);
-    }
-
-    #screen-day::before {
-      content: '';
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('atglance.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      opacity: 0.55; 
-      z-index: 0;
-    }
-
-    #screen-day::after {
-      content: '';
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(255, 255, 255, 0.10);
-      z-index: 0;
     }
 
     .day-header-tag {
@@ -653,6 +639,7 @@
       width: 100%;
     }
 
+    /* Flex-layout added to lock uniform heights for both Church & Reception */
     .arch-card {
       display: flex;
       flex-direction: column;
@@ -954,7 +941,7 @@
     }
 
     /* ==========================================================================
-       7. ENTOURAGE SCREEN
+       7. ENTOURAGE SCREEN (Equal Opacity & Depth to "The Details")
        ========================================================================== */
     #screen-entourage {
       position: relative;
@@ -1071,12 +1058,31 @@
     }
 
     /* ==========================================================================
-       8. DETAILS SCREEN (Plain Lavender & White Theme)
+       8. DETAILS SCREEN
        ========================================================================== */
     #screen-details {
       position: relative;
-      background: linear-gradient(180deg, var(--white) 0%, var(--lavender-bg) 100%);
+      background-color: var(--white);
       color: var(--black);
+    }
+    
+    #screen-details::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('details.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.75;
+      z-index: 0;
+      animation: scaleZoomBg 25s infinite alternate var(--ease-smooth);
+    }
+
+    #screen-details::after {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(255, 255, 255, 0.45);
+      z-index: 0;
     }
 
     .details-header-tag {
@@ -1125,20 +1131,22 @@
     }
     
     .detail-card { 
-      background: var(--white); 
+      background: rgba(255, 255, 255, 0.88); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(154, 132, 161, 0.35); 
       border-radius: 120px 150px 8px 8px;
       padding: 3rem 1rem 2rem; 
       text-align: center; 
       cursor: pointer; 
       transition: all 0.4s var(--ease-smooth); 
-      box-shadow: 0 8px 30px rgba(154, 132, 161, 0.08);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
       width: 100%;
     }
 
     .detail-card:hover { 
       border-color: var(--lavender); 
-      background: var(--white); 
+      background: rgba(255, 255, 255, 0.96); 
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 12px 35px rgba(154, 132, 161, 0.22);
     }
@@ -1168,14 +1176,16 @@
       max-width: 600px; 
       margin: 0 auto; 
       animation: fadeIn 0.4s forwards; 
-      background: var(--white); 
+      background: rgba(255, 255, 255, 0.92); 
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       padding: 2.5rem 1.5rem; 
       border: 1px solid rgba(154, 132, 161, 0.35); 
       border-radius: 12px;
       position: relative;
       z-index: 2;
       color: var(--black);
-      box-shadow: 0 12px 35px rgba(154, 132, 161, 0.1);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
       width: 100%;
     }
     .detail-content.active { display: block; }
@@ -1248,6 +1258,7 @@
     }
     .faq-item.open .faq-a { max-height: 250px; padding: 1.2rem 0; }
 
+    /* Action Links/Buttons for Wedding Fund */
     .registry-actions {
       display: flex;
       flex-direction: column;
@@ -1264,7 +1275,7 @@
       width: 100%;
       max-width: 380px;
       padding: 0.9rem 1.5rem;
-      background: rgba(154, 132, 161, 0.08);
+      background: rgba(154, 132, 161, 0.1);
       border: 1px solid rgba(154, 132, 161, 0.4);
       color: var(--black);
       font-size: 10px;
@@ -1411,11 +1422,12 @@
     }
 
     /* ==========================================================================
-       10. RESPONSIVE BREAKPOINTS
+       10. RESPONSIVE BREAKPOINTS (Enhanced Smooth Mobile Formatting)
        ========================================================================== */
     @media (max-width: 768px) {
       .container { padding: 2.2rem 1rem 3rem; }
 
+      /* Details grid optimization for small screens */
       .details-grid { 
         grid-template-columns: repeat(3, 1fr); 
         gap: 0.6rem; 
@@ -1433,6 +1445,7 @@
         letter-spacing: 0.5px; 
       }
 
+      /* Stack Ceremony and Reception vertically on mobile while keeping uniform height styling */
       .arch-cards-grid { 
         grid-template-columns: 1fr; 
         gap: 1.5rem; 
@@ -1445,6 +1458,7 @@
         font-size: 20px; 
       }
 
+      /* Entourage grid alignment on mobile */
       .entourage-grid { 
         grid-template-columns: repeat(2, 1fr); 
         gap: 0.8rem; 
@@ -1459,6 +1473,7 @@
         font-size: 14px; 
       }
 
+      /* Stacked gallery top positioning for mobile */
       .stacked-card { top: 75px; margin-bottom: 22vh; }
       .odometer-digit-strip span { width: clamp(30px, 8vw, 50px); }
       .btn { padding: 0.85rem 1.8rem; font-size: 9px; letter-spacing: 3px; }
@@ -1481,7 +1496,7 @@
       <h1 class="cover-names">ELENA & ADRIAN</h1>
       <div class="cover-date">31 JANUARY 2028 · MANILA</div>
       
-      <button class="cover-btn-text" onclick="startExperience()">open our story →</button>
+      <button class="cover-btn" onclick="startExperience()">OPEN OUR STORY →</button>
     </div>
   </div>
 
@@ -2052,6 +2067,7 @@
       document.getElementById('rsvp-success').style.display = 'block';
     }
 
+    /* 50% SLOWER MINIMALIST ODOMETER COUNTER (9.0s TRANSITION) */
     function getTargetDays() {
       const weddingDate = new Date('January 31, 2028 00:00:00').getTime();
       const now = new Date().getTime();
@@ -2105,6 +2121,7 @@
         strip.style.transition = 'none';
         strip.style.transform = 'translateY(0%)';
 
+        // 50% slower transition speed (extended to 9.0s)
         setTimeout(() => {
           strip.style.transition = 'transform 9.0s cubic-bezier(0.1, 0.9, 0.2, 1)';
           strip.style.transform = `translateY(${targetPercent}%)`;
@@ -2124,6 +2141,7 @@
       });
     }
 
+    /* SIMPLE & ELEGANT TYPEWRITER STORY ANIMATION (STRICT 0:10 AUDIO LOCK FOR "WE BECAME US") */
     const storyBlocks = [
       { type: 'p', text: 'It started with coffee.', class: 'story-highlight-italics' },
       { type: 'p', text: 'We met over iced coffee on an ordinary afternoon in Manila. What was supposed to be a quick coffee date turned into hours of conversation, laughter, and the feeling that we had known each other much longer than we actually had.' },
@@ -2189,8 +2207,8 @@
       let blockIndex = 0;
       let currentEl = null;
 
-      const VOCAL_HIT_TIME = 10.0;
-      const MUSIC_START_DELAY = 1500;
+      const VOCAL_HIT_TIME = 10.0; // Strictly locked to 0:10 lyrics start
+      const MUSIC_START_DELAY = 1500; // 1.5s musical intro breathing time
 
       function processStory() {
         if (blockIndex >= storyBlocks.length) {
@@ -2202,6 +2220,7 @@
 
         const block = storyBlocks[blockIndex];
 
+        // Paragraph 4: Fade In
         if (block.isFadeIn) {
           if (currentEl) currentEl.classList.remove('typing-cursor');
           currentEl = document.createElement(block.type);
@@ -2218,6 +2237,7 @@
           return;
         }
 
+        // Paragraph 3: "we became us." - Lock to 0:10 audio hit
         if (block.isBlurFocus) {
           if (currentEl) currentEl.classList.remove('typing-cursor');
 
@@ -2234,6 +2254,7 @@
             currentEl.textContent = block.text;
             container.appendChild(currentEl);
 
+            // Trigger Blur-to-Focus Animation
             setTimeout(() => {
               currentEl.classList.add('blur-focus-visible');
             }, 50);
@@ -2245,12 +2266,14 @@
           return;
         }
 
+        // Paragraph 1 & 2: Soft Fade Typewriter
         if (currentEl) currentEl.classList.remove('typing-cursor');
         currentEl = document.createElement(block.type);
         if (block.class) currentEl.className = block.class;
         currentEl.classList.add('typing-cursor');
         container.appendChild(currentEl);
 
+        // Smooth speed tuned so text finishes right before 0:10
         let speed = 24; 
         if (blockIndex === 1) speed = 20;
 
@@ -2260,9 +2283,11 @@
         });
       }
 
+      // Start music immediately, delay text start by 1.5s
       typeTimeout = setTimeout(processStory, MUSIC_START_DELAY);
     }
 
+    /* GENERAL SCROLL OBSERVER */
     let generalObserver;
     function initGeneralScrollObserver() {
       if (generalObserver) generalObserver.disconnect();
